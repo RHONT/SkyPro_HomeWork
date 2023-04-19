@@ -7,6 +7,7 @@ import java.util.*;
  */
 
 public class Main {
+    // накопитель сообщений для метода printet()
     private static Deque<String> infoLogger=new ArrayDeque<>();
 
     public static void main(String[] args) {
@@ -32,7 +33,6 @@ public class Main {
         infoLogger.add("Бумага");
 
         printer(dog,cat,paper);
-
     }
 
     public static void task2(){
@@ -134,9 +134,7 @@ public class Main {
         System.out.println("С помощь функции остаток от деления");
         System.out.println(maxWeight +" % " + minWeight+" = " + (maxWeight%minWeight));
 
-
         System.out.println("-".repeat(40));
-
     }
 
     public static void task8(){
@@ -148,7 +146,6 @@ public class Main {
     }
 
     public static void printer(Object... param){
-
 
         for (var element:param) {
             System.out.printf("%-12s | ",infoLogger.poll());
