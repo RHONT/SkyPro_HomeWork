@@ -101,16 +101,16 @@ public class Main {
 
     private static void task6() {
         System.out.println("Задача 6");
-        Map<Float, Integer> recipe = new HashMap<>();
+        Map<Product, Integer> recipe = new HashMap<>();
         Float[] total;
 
-        Function<Map<Float, Integer>, Float[]> resultFunc = (a) -> {
+        Function<Map<Product, Integer>, Float[]> resultFunc = (a) -> {
 
             Float[] totalResult = new Float[2];
             int weightGramm = 0;
 
             for (var element : a.entrySet()) {
-                weightGramm += element.getKey() * element.getValue();
+                weightGramm += element.getKey().getWeight() * element.getValue();
 
             }
             totalResult[0] = (float) weightGramm;
@@ -120,10 +120,10 @@ public class Main {
         };
 
 
-        recipe.put(Product.BANANAS.getWeight(), 5);
-        recipe.put(Product.MILK.getWeight(), 200);
-        recipe.put(Product.ICE_CREAM.getWeight(), 2);
-        recipe.put(Product.EGGS.getWeight(), 4);
+        recipe.put(Product.BANANAS, 5);
+        recipe.put(Product.MILK, 200);
+        recipe.put(Product.ICE_CREAM, 2);
+        recipe.put(Product.EGGS, 4);
 
         total = resultFunc.apply(recipe);
 
