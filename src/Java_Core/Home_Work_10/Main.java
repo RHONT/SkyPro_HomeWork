@@ -15,6 +15,7 @@ public class Main {
 
     private static void task1() {
         print("Задача 1");
+
         print("Введите год");
         int year = checkIntAndEnter();
 
@@ -73,17 +74,20 @@ public class Main {
             switch (articlePhone) {
                 case "0":
                     System.out.println("Установите версию приложения для iOS по ссылке");
-
                     return true;
+
                 case "0old":
                     System.out.println("Установите облегченную версию приложения для iOS по ссылке");
                     return true;
+
                 case "1":
                     System.out.println("Установите версию приложения для Android по ссылке");
                     return true;
+
                 case "1old":
                     System.out.println("Установите облегченную версию приложения для Android по ссылке");
                     return true;
+
                 default:
                     System.out.println("Неверный идентификатор операционный системы ");
                     return false;
@@ -92,9 +96,7 @@ public class Main {
     }
 
     private static boolean isLeapYear(int year) {
-        if (new GregorianCalendar().isLeapYear(year)) {
-            return true;
-        } else return false;
+        return new GregorianCalendar().isLeapYear(year);
     }
 
     private static void print(String str) {
@@ -105,8 +107,7 @@ public class Main {
     private static byte checkByteAndEnter() {
         while (true) {
             try {
-                byte result = sc.nextByte();
-                return result;
+                return sc.nextByte();
             } catch (InputMismatchException e) {
                 System.out.println("Тип вводимого значения не входит в диапазон Byte");
                 System.out.println(e.getMessage());
@@ -118,8 +119,7 @@ public class Main {
     private static int checkIntAndEnter() {
         while (true) {
             try {
-                int result = sc.nextInt();
-                return result;
+                return sc.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Тип вводимого значения не входит в диапазон Integer");
                 System.out.println(e.getMessage());
