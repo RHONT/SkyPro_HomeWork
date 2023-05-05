@@ -1,5 +1,6 @@
 package Java_Core.Home_Work_10;
 
+import java.time.LocalDate;
 import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -69,31 +70,49 @@ public class Main {
     private static boolean scanDevice(byte typeOs, int year) {
 
         String articlePhone = String.valueOf(typeOs);
-        if (year < 2015) articlePhone += "old";
-        {
-            switch (articlePhone) {
-                case "0":
-                    System.out.println("Установите версию приложения для iOS по ссылке");
-                    return true;
 
-                case "0old":
-                    System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-                    return true;
+        if ((year < 2008 || year > LocalDate.now().getYear()) && articlePhone.equals("1")) {
+            articlePhone += "deliriumAndroid";
 
-                case "1":
-                    System.out.println("Установите версию приложения для Android по ссылке");
-                    return true;
+        } else if ((year < 2007 || year > LocalDate.now().getYear()) && articlePhone.equals("0")) {
+            articlePhone += "delirium_iOS";
 
-                case "1old":
-                    System.out.println("Установите облегченную версию приложения для Android по ссылке");
-                    return true;
+        } else if (year < 2015 && year >= 2008) articlePhone += "old";
 
-                default:
-                    System.out.println("Неверный идентификатор операционный системы ");
-                    return false;
-            }
+
+        switch (articlePhone) {
+            case "0":
+                System.out.println("Установите версию приложения для iOS по ссылке");
+                return true;
+
+            case "0old":
+                System.out.println("Установите облегченную версию приложения для iOS по ссылке");
+                return true;
+
+            case "1":
+                System.out.println("Установите версию приложения для Android по ссылке");
+                return true;
+
+            case "1old":
+                System.out.println("Установите облегченную версию приложения для Android по ссылке");
+                return true;
+
+            case "1deliriumAndroid":
+                System.out.println("Ошибка. Андроида в этом году еще не существовало. " +
+                        "А если и есть, то гостей из будущего мы не обслуживаем");
+                return false;
+
+            case "0delirium_iOS":
+                System.out.println("Ошибка. iOs на iPhone в этом году еще не существовало. " +
+                        "А если и есть, то гостей из будущего мы не обслуживаем");
+                return false;
+
+            default:
+                System.out.println("Неверный идентификатор операционный системы ");
+                return false;
         }
     }
+
 
     private static boolean isLeapYear(int year) {
         return new GregorianCalendar().isLeapYear(year);
