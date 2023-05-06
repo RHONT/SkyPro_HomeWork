@@ -1,10 +1,8 @@
 package Java_Core.Home_Work_10;
 
 import java.util.GregorianCalendar;
-import java.util.Scanner;
 
 public class Main {
-    private static final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
         task1(2023);
@@ -35,7 +33,6 @@ public class Main {
         print("-".repeat(40));
     }
 
-
     private static int calcDistance(int deliveryDistance) {
         if (deliveryDistance > 0 && deliveryDistance <= 20) {
             return 1;
@@ -45,7 +42,6 @@ public class Main {
             return 3;
         } else return 0;
     }
-
 
     private static boolean isLeapYear(int year) {
         return new GregorianCalendar().isLeapYear(year);
@@ -61,6 +57,5 @@ public class Main {
 
     private static void print(String str) {
         System.out.println(str);
-
     }
 }
