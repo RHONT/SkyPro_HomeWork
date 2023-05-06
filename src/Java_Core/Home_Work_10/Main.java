@@ -40,7 +40,7 @@ public class Main {
             return 2;
         } else if (deliveryDistance > 60 && deliveryDistance <= 100) {
             return 3;
-        } else return 0;
+        } else return -1;
     }
 
     private static boolean isLeapYear(int year) {
