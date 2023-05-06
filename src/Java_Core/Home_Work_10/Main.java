@@ -31,12 +31,7 @@ public class Main {
 
     private static void task3(int distance) {
         print("Задача 3");
-
-        int deliveryDay = calcDistance(distance);
-        if (deliveryDay != 0) {
-            print("Потребуется дней:" + deliveryDay + " день");
-        } else print("Доставка невозможна");
-
+        System.out.println(calcDistance(distance));
         print("-".repeat(40));
     }
 
