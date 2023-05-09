@@ -8,6 +8,8 @@ public class Main {
 
         Book book_1 = new Book("Wasp", author_1, 1957);
         Book book_2 = new Book("Shantaram", author_2, 2003);
+        System.out.println(author_1);
+        System.out.println(book_1);
 
         book_1.setPublicationYear(1959);
     }
