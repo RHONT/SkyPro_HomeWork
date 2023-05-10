@@ -8,4 +8,10 @@ public interface CRUD {
     void indexPay(double percent);
 
     void indexPayDepartment(double percent, int department);
+
+    void remove(int id);
+
+    void changeSalary(String fio, double newSalary);
+
+    void changeDepartment(String fio, double newSalary);
 }
