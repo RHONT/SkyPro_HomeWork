@@ -15,71 +15,27 @@ public class StatisticsImpl implements Statistics {
         this.employeeBook = employeeBook;
     }
 
-    // поиск минимальной заработной платы
-    // Не использую Comparator.nullsLast()
-    // поэтому есть риск, что первый элемент окажеться null
-    // вынужден использовать флаг findFirst, для поиска первого не null элемента
     @Override
     public Employee minSalary() {
-        Employee minSalaryMan = new Employee();
-        double min = 0;
-        boolean findFirst = false;
-        for (int i = 0; i < book.length; i++) {
-            if (!findFirst) {
-                if (book[i] != null) {
-                    min = book[i].getSalary();
-                    minSalaryMan = book[i];
-                    findFirst = true;
-                }
-            } else {
-                if (book[i] != null) {
-                    double currentSalary = book[i].getSalary();
-                    if (min > currentSalary) {
-                        min = currentSalary;
-                        minSalaryMan = book[i];
-                    }
-                }
-            }
-        }
-        return minSalaryMan;
+        return getEmployeeSalaryCompare(-1, MoreOrLess.LESS);
     }
 
     @Override
     public Employee minSalaryDepartment(int department) {
-        Employee minSalaryMan = new Employee();
-        double min = 0;
-        boolean findFirst = false;
-        for (int i = 0; i < book.length; i++) {
-            if (!findFirst) {
-                if (book[i] != null && book[i].getDepartment() == department) {
-                    min = book[i].getSalary();
-                    minSalaryMan = book[i];
-                    findFirst = true;
-                }
-            } else {
-                if (book[i] != null && book[i].getDepartment() == department) {
-                    double currentSalary = book[i].getSalary();
-                    if (min > currentSalary) {
-                        min = currentSalary;
-                        minSalaryMan = book[i];
-                    }
-                }
-            }
-        }
-        return minSalaryMan;
+        return getEmployeeSalaryCompare(department, MoreOrLess.LESS);
     }
 
     @Override
     public Employee maxSalary() {
-        return someMethod(-1, MoreOrLess.MORE);
+        return getEmployeeSalaryCompare(-1, MoreOrLess.MORE);
     }
 
     @Override
     public Employee maxSalaryDepartment(int department) {
-        return someMethod(department, MoreOrLess.MORE);
+        return getEmployeeSalaryCompare(department, MoreOrLess.MORE);
     }
 
-    public Employee someMethod(int department, MoreOrLess moreOrLess) {
+    public Employee getEmployeeSalaryCompare(int department, MoreOrLess moreOrLess) {
         Employee forFindingSalaryMan = new Employee();
         double currenValue = 0;
         boolean findFirstNotNull = false;

@@ -1,5 +1,7 @@
 package Java_Core.Course_Work;
 
+import Java_Core.Course_Work.Enum.Departments;
+
 import java.util.Objects;
 
 public class Employee {
@@ -7,12 +9,12 @@ public class Employee {
     private int id;
     private String fio;
     private double salary;
-    private int department;
+    private Departments department;
 
     public Employee() {
     }
 
-    public Employee(String fio, double salary, int department) {
+    public Employee(String fio, double salary, Departments department) {
         this.id = increment++;
         this.fio = fio;
         this.salary = salary;
@@ -40,15 +42,15 @@ public class Employee {
     }
 
     public int getDepartment() {
-        return department;
+        return department.getId_dep();
     }
 
-    public void setDepartment(int department) {
+    public void setDepartment(Departments department) {
         this.department = department;
     }
 
     public boolean isEmpty() {
-        return this.salary == 0 || this.getFio() == null || this.department == 0;
+        return this.salary == 0 || this.getFio() == null || this.department.getId_dep() == 0;
 
     }
 
