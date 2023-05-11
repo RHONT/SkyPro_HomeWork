@@ -47,6 +47,11 @@ public class Employee {
         this.department = department;
     }
 
+    public boolean isEmpty() {
+        return this.salary == 0 || this.getFio() == null || this.department == 0;
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

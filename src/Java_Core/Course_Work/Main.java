@@ -10,7 +10,8 @@ public class Main {
         employeeBook.crud().add(new Employee("Юрий Радонецкий Евгеньевич", 85_000, 3));
 
         System.out.println(employeeBook.statistics().minSalary());
-        System.out.println(employeeBook.statistics().minSalaryDepartment(3));
+        System.out.println(employeeBook.statistics().maxSalary());
+        System.out.println(employeeBook.statistics().maxSalaryDepartment(3));
         employeeBook.statistics().printFIOAllEmployee();
         System.out.println(employeeBook.statistics().avg());
         employeeBook.statistics().printInfoDepartment(3);

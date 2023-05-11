@@ -3,6 +3,7 @@ package Java_Core.Course_Work.ClassImpl;
 import Java_Core.Course_Work.DAO.Statistics;
 import Java_Core.Course_Work.Employee;
 import Java_Core.Course_Work.EmployeeBook;
+import Java_Core.Course_Work.Enum.MoreOrLess;
 
 public class StatisticsImpl implements Statistics {
 
@@ -70,77 +71,55 @@ public class StatisticsImpl implements Statistics {
 
     @Override
     public Employee maxSalary() {
-        Employee maxSalaryMan = new Employee();
-        double max = 0;
-        boolean findFirst = false;
-        for (int i = 0; i < book.length; i++) {
-            if (!findFirst) {
-                if (book[i] != null) {
-                    max = book[i].getSalary();
-                    maxSalaryMan = book[i];
-                    findFirst = true;
-                }
-            } else {
-                if (book[i] != null) {
-                    double currentSalary = book[i].getSalary();
-                    if (max < currentSalary) {
-                        max = currentSalary;
-                        maxSalaryMan = book[i];
-                    }
-                }
-            }
-        }
-        return maxSalaryMan;
+        return someMethod(-1, MoreOrLess.MORE);
     }
 
     @Override
     public Employee maxSalaryDepartment(int department) {
-        Employee maxSalaryMan = new Employee();
-        double max = 0;
-        boolean findFirst = false;
+        return someMethod(department, MoreOrLess.MORE);
+    }
+
+    public Employee someMethod(int department, MoreOrLess moreOrLess) {
+        Employee forFindingSalaryMan = new Employee();
+        double currenValue = 0;
+        boolean findFirstNotNull = false;
         for (int i = 0; i < book.length; i++) {
-            if (!findFirst) {
-                if (book[i] != null && book[i].getDepartment() == department) {
-                    max = book[i].getSalary();
-                    maxSalaryMan = book[i];
-                    findFirst = true;
+            if (!findFirstNotNull) {
+                if (book[i] != null && checkDepatrment(book[i].getDepartment(), department)) {
+                    currenValue = book[i].getSalary();
+                    forFindingSalaryMan = book[i];
+                    findFirstNotNull = true;
                 }
             } else {
-                if (book[i] != null && book[i].getDepartment() == department) {
+                if (book[i] != null && checkDepatrment(book[i].getDepartment(), department)) {
                     double currentSalary = book[i].getSalary();
-                    if (max < currentSalary) {
-                        max = currentSalary;
-                        maxSalaryMan = book[i];
+
+                    if (moreOrLess == MoreOrLess.MORE) {
+                        if (currenValue < currentSalary) {
+                            currenValue = currentSalary;
+                            forFindingSalaryMan = book[i];
+                        }
+                    } else {
+                        if (currenValue > currentSalary) {
+                            currenValue = currentSalary;
+                            forFindingSalaryMan = book[i];
+                        }
                     }
+
                 }
             }
         }
-        return maxSalaryMan;
+        if (forFindingSalaryMan.isEmpty()) {
+            System.out.println("Сотрудник не найден!");
+        }
+        return forFindingSalaryMan;
     }
 
-//    public Employee someMethod(int department) {
-//        Employee maxSalaryMan = new Employee();
-//        double currVal = 0;
-//        boolean findFirst = false;
-//        for (int i = 0; i < book.length; i++) {
-//            if (!findFirst) {
-//                if (book[i] != null && book[i].getDepartment() == department) {
-//                    max = book[i].getSalary();
-//                    maxSalaryMan = book[i];
-//                    findFirst = true;
-//                }
-//            } else {
-//                if (book[i] != null && book[i].getDepartment() == department) {
-//                    double currentSalary = book[i].getSalary();
-//                    if (max < currentSalary) {
-//                        max = currentSalary;
-//                        maxSalaryMan = book[i];
-//                    }
-//                }
-//            }
-//        }
-//        return maxSalaryMan;
-//    }
+    // -1 передаем, если не хотим, чтобы метод работал с отделами
+    // если не -1, значит будут производиться сравнения
+    private boolean checkDepatrment(int compareDepart, int masterDepart) {
+        return masterDepart == -1 || masterDepart == compareDepart;
+    }
 
     @Override
     public void printFIOAllEmployee() {

@@ -14,4 +14,5 @@ public interface CRUD {
     void changeSalary(String fio, double newSalary);
 
     void changeDepartment(String fio, double newSalary);
+    
 }

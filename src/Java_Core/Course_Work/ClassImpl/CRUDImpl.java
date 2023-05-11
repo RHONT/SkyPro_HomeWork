@@ -53,4 +53,19 @@ public class CRUDImpl implements CRUD {
 
         }
     }
+
+    @Override
+    public void remove(int id) {
+
+    }
+
+    @Override
+    public void changeSalary(String fio, double newSalary) {
+
+    }
+
+    @Override
+    public void changeDepartment(String fio, double newSalary) {
+
+    }
 }
