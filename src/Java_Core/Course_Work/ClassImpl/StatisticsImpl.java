@@ -3,6 +3,7 @@ package Java_Core.Course_Work.ClassImpl;
 import Java_Core.Course_Work.DAO.Statistics;
 import Java_Core.Course_Work.Employee;
 import Java_Core.Course_Work.EmployeeBook;
+import Java_Core.Course_Work.Enum.Departments;
 import Java_Core.Course_Work.Enum.MoreOrLess;
 
 public class StatisticsImpl implements Statistics {
@@ -21,8 +22,8 @@ public class StatisticsImpl implements Statistics {
     }
 
     @Override
-    public Employee minSalaryDepartment(int department) {
-        return getEmployeeSalaryCompare(department, MoreOrLess.LESS);
+    public Employee minSalaryDepartment(Departments departments) {
+        return getEmployeeSalaryCompare(departments.getId_dep(), MoreOrLess.LESS);
     }
 
     @Override
@@ -31,8 +32,8 @@ public class StatisticsImpl implements Statistics {
     }
 
     @Override
-    public Employee maxSalaryDepartment(int department) {
-        return getEmployeeSalaryCompare(department, MoreOrLess.MORE);
+    public Employee maxSalaryDepartment(Departments departments) {
+        return getEmployeeSalaryCompare(departments.getId_dep(), MoreOrLess.MORE);
     }
 
     public Employee getEmployeeSalaryCompare(int department, MoreOrLess moreOrLess) {
@@ -41,13 +42,13 @@ public class StatisticsImpl implements Statistics {
         boolean findFirstNotNull = false;
         for (int i = 0; i < book.length; i++) {
             if (!findFirstNotNull) {
-                if (book[i] != null && checkDepatrment(book[i].getDepartment(), department)) {
+                if (book[i] != null && checkDepatrment(book[i].getDepartmentId(), department)) {
                     currenValue = book[i].getSalary();
                     forFindingSalaryMan = book[i];
                     findFirstNotNull = true;
                 }
             } else {
-                if (book[i] != null && checkDepatrment(book[i].getDepartment(), department)) {
+                if (book[i] != null && checkDepatrment(book[i].getDepartmentId(), department)) {
                     double currentSalary = book[i].getSalary();
 
                     if (moreOrLess == MoreOrLess.MORE) {
@@ -66,7 +67,7 @@ public class StatisticsImpl implements Statistics {
             }
         }
         if (forFindingSalaryMan.isEmpty()) {
-            System.out.println("Сотрудник не найден!");
+            return new Employee();
         }
         return forFindingSalaryMan;
     }
@@ -77,33 +78,6 @@ public class StatisticsImpl implements Statistics {
         return masterDepart == -1 || masterDepart == compareDepart;
     }
 
-    @Override
-    public void printFIOAllEmployee() {
-        for (var element : book) {
-            if (element != null) {
-                System.out.println(element.getFio());
-            }
-        }
-
-    }
-
-    @Override
-    public void printInfoAllEmployee() {
-        for (var element : book) {
-            if (element != null) {
-                System.out.println(element);
-            }
-        }
-    }
-
-    @Override
-    public void printInfoDepartment(int department) {
-        for (var element : book) {
-            if (element != null && element.getDepartment() == department) {
-                System.out.println("id = " + element.getId() + " ФИО: " + element.getFio() + " Зарплата: " + element.getSalary());
-            }
-        }
-    }
 
     @Override
     public double amountWages() {
@@ -117,11 +91,11 @@ public class StatisticsImpl implements Statistics {
     }
 
     @Override
-    public double amountWagesDepartment(int department) {
+    public double amountWagesDepartment(Departments departments) {
         double sum = 0;
         int count = 0;
         for (var element : book) {
-            if (element != null && element.getDepartment() == department) {
+            if (element != null && element.getDepartmentId() == departments.getId_dep()) {
                 sum += element.getSalary();
                 count++;
             }
@@ -130,19 +104,49 @@ public class StatisticsImpl implements Statistics {
 
     }
 
+
     @Override
     public double avg() {
         return amountWages() / employeeBook.getSizeArr();
     }
 
     @Override
-    public double avgDepartment(int department) {
+    public double avgDepartment(Departments departments) {
         double sum = 0;
+        int numberOfPeople = 0;
         for (var element : book) {
-            if (element != null && element.getDepartment() == department) {
+            if (element != null && element.getDepartmentId() == departments.getId_dep()) {
                 sum += element.getSalary();
+                numberOfPeople++;
             }
         }
-        return sum;
+        return sum / numberOfPeople;
+    }
+
+    @Override
+    public void lessSalaryAll(double value) {
+        defineMoreOrLess(MoreOrLess.LESS, value);
+    }
+
+    @Override
+    public void moreSalaryAll(double value) {
+        defineMoreOrLess(MoreOrLess.MORE, value);
+    }
+
+    private void defineMoreOrLess(MoreOrLess moreOrLess, double value) {
+        for (int i = 0; i < book.length; i++) {
+            if (book[i] != null) {
+                if (moreOrLess == MoreOrLess.LESS) {
+                    if (book[i].getSalary() < value) {
+                        System.out.println("[ " + book[i].getId() + " " + book[i].getFio() + " " + book[i].getSalary() + " ]");
+                    }
+                } else {
+                    if (book[i].getSalary() >= value) {
+                        System.out.println("[ " + book[i].getId() + " " + book[i].getFio() + " " + book[i].getSalary() + " ]");
+                    }
+                }
+            }
+
+        }
     }
 }

@@ -1,8 +1,10 @@
 package Java_Core.Course_Work;
 
 import Java_Core.Course_Work.ClassImpl.CRUDImpl;
+import Java_Core.Course_Work.ClassImpl.PrintingImpl;
 import Java_Core.Course_Work.ClassImpl.StatisticsImpl;
 import Java_Core.Course_Work.DAO.CRUD;
+import Java_Core.Course_Work.DAO.Printing;
 import Java_Core.Course_Work.DAO.Statistics;
 
 public class EmployeeBook {
@@ -12,6 +14,7 @@ public class EmployeeBook {
 
     private Statistics statistics = new StatisticsImpl(this.book, this);
     private CRUD crud = new CRUDImpl(this.book, this);
+    private Printing print = new PrintingImpl(this.book, this);
 
     public void upSize() {
         this.sizeArr++;
@@ -27,6 +30,10 @@ public class EmployeeBook {
 
     public CRUD crud() {
         return crud;
+    }
+
+    public Printing print() {
+        return print;
     }
 
     public int getSizeArr() {

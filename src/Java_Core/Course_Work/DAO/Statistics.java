@@ -1,29 +1,27 @@
 package Java_Core.Course_Work.DAO;
 
 import Java_Core.Course_Work.Employee;
+import Java_Core.Course_Work.Enum.Departments;
 
 public interface Statistics {
     Employee minSalary();
 
-    Employee minSalaryDepartment(int department);
+    Employee minSalaryDepartment(Departments departments);
 
     Employee maxSalary();
 
-    Employee maxSalaryDepartment(int department);
-
-
-    void printFIOAllEmployee();
-
-    void printInfoAllEmployee();
-
-    void printInfoDepartment(int department);
+    Employee maxSalaryDepartment(Departments departments);
 
     double amountWages();
 
-    double amountWagesDepartment(int department);
+    double amountWagesDepartment(Departments departments);
 
     double avg();
 
-    double avgDepartment(int department);
+    double avgDepartment(Departments departments);
+
+    void lessSalaryAll(double value);
+
+    void moreSalaryAll(double value);
 
 }

@@ -41,8 +41,12 @@ public class Employee {
         return salary;
     }
 
-    public int getDepartment() {
+    public int getDepartmentId() {
         return department.getId_dep();
+    }
+
+    public Departments getDepartment() {
+        return this.department;
     }
 
     public void setDepartment(Departments department) {
@@ -50,9 +54,9 @@ public class Employee {
     }
 
     public boolean isEmpty() {
-        return this.salary == 0 || this.getFio() == null || this.department.getId_dep() == 0;
-
+        return this.salary == 0 || this.getFio() == null || this.department == null;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -69,11 +73,11 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", fio='" + fio + '\'' +
-                ", salary=" + salary +
-                ", department=" + department +
-                '}';
+        return
+                "[ id = " + id +
+                        ", ФИО = " + fio +
+                        ", Зарплата = " + salary +
+                        ", Отдел = " + department +
+                        " ]";
     }
 }
