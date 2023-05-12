@@ -21,10 +21,6 @@ public class Employee {
         this.department = department;
     }
 
-    public void setFio(String fio) {
-        this.fio = fio;
-    }
-
     public void setSalary(double salary) {
         this.salary = salary;
     }

@@ -36,7 +36,10 @@ public class StatisticsImpl implements Statistics {
         return getEmployeeSalaryCompare(departments.getId_dep(), MoreOrLess.MORE);
     }
 
-    public Employee getEmployeeSalaryCompare(int department, MoreOrLess moreOrLess) {
+    // Вспомогательный метод для использования в четырех выше стоящих методах
+    // Департаменты опциональны
+    // enum MoreOrLess, помогает направить условия в нужное русло
+    private Employee getEmployeeSalaryCompare(int department, MoreOrLess moreOrLess) {
         Employee forFindingSalaryMan = new Employee();
         double currenValue = 0;
         boolean findFirstNotNull = false;
